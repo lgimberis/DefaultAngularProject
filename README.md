@@ -1,27 +1,32 @@
-# DefaultAngularProject
+# Read Me
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.7.
+Hello!
 
-## Development server
+You have been tasked with completing a programming assignment as part of our interview process.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+If you look in the 'Assignment Assets' folder, you will find the technical specification (ProgrammingTest.pdf) which details what to deliver.
 
-## Code scaffolding
+You will also find the following:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- UI Designs (Visual representation of how the product owner would like the program to look)
+- Assets (Images, Audios & Icons)
+- JSON file (List of questions for the program to use)
 
-## Build
+We use Angular for our front end applications so have created you a basic project to use.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+If you are new to Angular, refer to the following link on how to get setup: https://angular.io/guide/setup-local
 
-## Running unit tests
+To run the project locally, run the following commands:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `npm install -g @angular/cli`
+- `npm install`
+- `ng serve`
 
-## Running end-to-end tests
+Then go to 'http://localhost:4200/' in your web browser.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Once ready for submission, please upload to your own GitHub repository and either send us the link or invite the account https://github.com/IDLDevs to view.
 
-## Further help
+If you have any questions, please email: jacob.withers@ascentis.co.uk.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Thanks,
+Jake (Jacob Withers)
