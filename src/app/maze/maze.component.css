@@ -1,0 +1,37 @@
+.screen {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(2, 121, 152, 0.6), rgba(2, 121, 152, 0.6)), url('../../../Assignment Assets/Images/Classroom+Window.png');
+    overflow: hidden;
+}
+
+table {
+    background-color: rgb(255, 255, 255);
+    border: 2.5px solid #495058;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0px;
+    width: 118px;
+    height: 75px;
+    border-width: 0px;
+    border-style: solid; 
+    border-color: #495058;
+}
+
+.maze-square-top {
+    border-top-width: 2.5px;
+}
+
+.maze-square-right {
+    border-right-width: 2.5px;
+}
+
+.maze-square-bottom {
+    border-bottom-width: 2.5px;
+}
+
+.maze-square-left {
+    border-left-width: 2.5px;
+}
