@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MazeSquare } from '../maze-square';
 import Mazes from '../../assets/Mazes.json';
 
 function parseMaze(mazeCollision: number[][]) {
@@ -6,9 +7,12 @@ function parseMaze(mazeCollision: number[][]) {
   // Runs various checks that the defined matrix is sensible with no mistakes
   // Extracts CSS classes for drawing the maze for each square
 
-  let mazeSquares: string[][] = Array(mazeCollision.length);
-  for (let i = 0; i < mazeSquares.length; i++) {
-    mazeSquares[i] = Array(mazeCollision[0].length).fill("");
+  let mazeSquares: MazeSquare[][] = Array(mazeCollision.length);
+  for (let r = 0; r < mazeSquares.length; r++) {
+    mazeSquares[r] = Array(mazeCollision[r].length);
+    for (let c = 0; c < mazeSquares[r].length; c++) {
+      mazeSquares[r][c] = {classNames: '', row: r, column: c};
+    }
   }
   const LEFT_VALUE = 8;
   const BOTTOM_VALUE = 4;
@@ -72,7 +76,7 @@ function parseMaze(mazeCollision: number[][]) {
       // Set HTML class name for display purposes
       for (const [value, className] of classValues) {
         if (squareValue & Number(value)) {
-          mazeSquares[r][c] += " " + String(className); 
+          mazeSquares[r][c].classNames += " " + String(className); 
         }
       }
 
@@ -91,5 +95,5 @@ export class MazeComponent {
   numColumns: number = 10;
   rows: number[] = Array(this.numRows).fill(0);
   mazeCollision: number[][] = Mazes["maze-1"];
-  maze: string[][] = parseMaze(this.mazeCollision);
+  maze: MazeSquare[][] = parseMaze(this.mazeCollision);
 }

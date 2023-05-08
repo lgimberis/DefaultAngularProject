@@ -1,6 +1,6 @@
-<table>
+<table #table>
     <tr *ngFor="let row of maze;">
-        <td *ngFor="let square of row;" class="{{square}}">
+        <td *ngFor="let square of row;" class="{{square.classNames}}">
         </td>
     </tr>
 </table>
