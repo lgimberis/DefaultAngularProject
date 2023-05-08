@@ -2,15 +2,24 @@ import { Component } from '@angular/core';
 import Mazes from '../../assets/Mazes.json';
 
 function parseMaze(mazeCollision: number[][]) {
+  // Processes the given collision matrix as read directly from a JSON file
+  // Runs various checks that the defined matrix is sensible with no mistakes
+  // Extracts CSS classes for drawing the maze for each square
+
   let mazeSquares: string[][] = Array(mazeCollision.length);
   for (let i = 0; i < mazeSquares.length; i++) {
     mazeSquares[i] = Array(mazeCollision[0].length).fill("");
   }
+  const LEFT_VALUE = 8;
+  const BOTTOM_VALUE = 4;
+  const RIGHT_VALUE = 2;
+  const TOP_VALUE = 1;
+  const TOTAL_VALUE = LEFT_VALUE + BOTTOM_VALUE + RIGHT_VALUE + TOP_VALUE;
   const classValues = [
-    [8, "maze-square-left"],
-    [4, "maze-square-bottom"],
-    [2, "maze-square-right"],
-    [1, "maze-square-top"]
+    [LEFT_VALUE, "maze-square-left"],
+    [BOTTOM_VALUE, "maze-square-bottom"],
+    [RIGHT_VALUE, "maze-square-right"],
+    [TOP_VALUE, "maze-square-top"]
   ];
   function complainAboutSquare(r: Number, c: Number, s: string) {
     // Helper function to report errors with maze encoding
@@ -18,23 +27,52 @@ function parseMaze(mazeCollision: number[][]) {
   }
   for (const [r, row] of mazeCollision.entries()) {
     for (const [c, squareValue] of row.entries()) {
-      let remainder = squareValue;
-      if (squareValue < 0 || squareValue > 15) {
+      // Various checks that maze coding is correct:
+      // Blatantly incorrect values outside the valid range
+      if (squareValue < 0 || squareValue > TOTAL_VALUE) {
         complainAboutSquare(r, c, "has an invalid collision value");
       }
-      if (r == 0 && !(squareValue & 1)) {
-        complainAboutSquare(r, c, "does not have collision on its top");
-      } else if (r == mazeCollision.length - 1 && !(squareValue & 4)) {
-        complainAboutSquare(r, c, "does not have collision on its bottom");
+
+      // Because maze borders are encoded via bit flags we can use bitwise operators & and ^
+      // To check which sides are set for each square
+      // Top/bottom border problems
+      if (r == 0) {
+        // Top row
+        if (!(squareValue & TOP_VALUE)) {
+          complainAboutSquare(r, c, "is on the top edge but does not have collision on its top");
+        }
+      } else {
+        // Has a square above
+        if (Boolean(squareValue & TOP_VALUE) != Boolean(mazeCollision[r - 1][c] & BOTTOM_VALUE)) {
+          complainAboutSquare(r, c, "does not match borders with the square above it");
+        }
+        // Bottom edge
+        if (r == mazeCollision.length - 1 && !(squareValue & BOTTOM_VALUE)) {
+          complainAboutSquare(r, c, "is on the bottom edge but does not have collision on its bottom");
+        }
+      } 
+
+      // Left/right border problems
+      if (c == 0) {
+        // Left column
+        if (!(squareValue & LEFT_VALUE)) {
+          complainAboutSquare(r, c, "is on the left edge but does not have collision on its left");
+        }
+      } else {
+        // Has a square to the left
+        if (c > 0 && (Boolean(squareValue & LEFT_VALUE) != Boolean(mazeCollision[r][c - 1] & RIGHT_VALUE))) {
+          complainAboutSquare(r, c, "does not match borders with the square left of it");
+        }
+        // Right edge
+        if (c == row.length - 1 && !(squareValue & RIGHT_VALUE)) {
+          complainAboutSquare(r, c, "is on the right edge but does not have collision on its right");
+        } 
       }
-      if (c == 0 && !(squareValue & 8)) {
-        complainAboutSquare(r, c, "does not have collision on its left");
-      } else if (c == row.length - 1 && !(squareValue & 2)) {
-        complainAboutSquare(r, c, "does not have collision on its right");
-      }
+      
+      // Set HTML class name for display purposes
       for (const [value, className] of classValues) {
-        if (remainder & Number(value)) {
-          mazeSquares[r][c] += " " + String(className);
+        if (squareValue & Number(value)) {
+          mazeSquares[r][c] += " " + String(className); 
         }
       }
 
