@@ -4,12 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MazeComponent } from './maze/maze.component';
 import { ControlsComponent } from './controls/controls.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MazeComponent,
-    ControlsComponent
+    ControlsComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule
