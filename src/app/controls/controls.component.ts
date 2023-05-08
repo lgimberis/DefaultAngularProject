@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-controls',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./controls.component.css']
 })
 export class ControlsComponent {
-
+  @Output() moveEvent = new EventEmitter<number>();
+  move(direction: number) {
+    this.moveEvent.emit(direction);
+  }
 }

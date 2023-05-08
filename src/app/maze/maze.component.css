@@ -22,6 +22,15 @@
     border-color: #495058;
 }
 
+.player {
+    width: 118px;
+    height: 75px;
+    position: relative;
+    margin-top: -75px;
+    top: 75px;
+    left: 0px;
+}
+
 .maze-square-top {
     border-top-width: 5px;
 }

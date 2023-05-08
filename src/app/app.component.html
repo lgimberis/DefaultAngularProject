@@ -233,5 +233,5 @@
 
 <div class="content">
   <app-maze></app-maze>
-  <app-controls></app-controls>
+  <app-controls (moveEvent)="receiveMoveEvent($event)"></app-controls>
 </div>

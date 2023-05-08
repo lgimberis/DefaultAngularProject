@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { MazeSquare } from '../maze-square';
 import Mazes from '../../assets/Mazes.json';
 
+const SQUARE_WIDTH_PIXELS = 118;
+const SQUARE_HEIGHT_PIXELS = 75;
+
 function parseMaze(mazeCollision: number[][]) {
   // Processes the given collision matrix as read directly from a JSON file
   // Runs various checks that the defined matrix is sensible with no mistakes
@@ -85,6 +88,12 @@ function parseMaze(mazeCollision: number[][]) {
   return mazeSquares;
 }
 
+const MOVE_UP = 1;
+const MOVE_RIGHT = 2;
+const MOVE_DOWN = 4;
+const MOVE_LEFT = 8;
+
+
 @Component({
   selector: 'app-maze',
   templateUrl: './maze.component.html',
@@ -96,4 +105,31 @@ export class MazeComponent {
   rows: number[] = Array(this.numRows).fill(0);
   mazeCollision: number[][] = Mazes["maze-1"];
   maze: MazeSquare[][] = parseMaze(this.mazeCollision);
+  playerRow: number = 0;
+  playerColumn: number = 0;
+  playerTop: number = SQUARE_HEIGHT_PIXELS;
+  playerLeft: number = 0;
+  movePlayer = (direction: number) => {
+    if (direction & this.mazeCollision[this.playerRow][this.playerColumn]) {
+      console.error("Invalid move direction given: %d at tile (%d, %d) with flag %d", 
+        direction, this.playerRow, this.playerColumn, this.mazeCollision[this.playerRow][this.playerColumn]);
+      return;
+    }
+
+    if (direction & MOVE_UP) {
+      this.playerRow -= 1;
+    } else if (direction & MOVE_RIGHT) {
+      this.playerColumn += 1;
+    } else if (direction & MOVE_DOWN) {
+      this.playerRow += 1
+    } else if (direction & MOVE_LEFT) {
+      this.playerColumn -= 1;
+    } else {
+      console.error("Nonsensical move direction given: %d", direction)
+      return;
+    }
+    this.playerLeft = this.playerColumn * SQUARE_WIDTH_PIXELS;
+    this.playerTop = (this.playerRow + 1) * SQUARE_HEIGHT_PIXELS;
+  }
+
 }
