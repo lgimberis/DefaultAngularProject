@@ -23,6 +23,7 @@
     background: #027998;
     border: 2px solid #027998;
     border-radius: 5px;
+    user-select: none;
 }
 
 .control-spacer {
@@ -48,4 +49,5 @@
     line-height: 24px;
     margin: 0px;
     color: #495058;
+    user-select: none;
 }
