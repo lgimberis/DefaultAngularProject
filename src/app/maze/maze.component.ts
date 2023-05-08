@@ -103,7 +103,7 @@ export class MazeComponent {
   numRows: number = 10;
   numColumns: number = 10;
   rows: number[] = Array(this.numRows).fill(0);
-  mazeCollision: number[][] = Mazes["maze-1"];
+  mazeCollision: number[][] = Mazes["maze-1"]["mazeData"];
   maze: MazeSquare[][] = parseMaze(this.mazeCollision);
   playerRow: number = 0;
   playerColumn: number = 0;
