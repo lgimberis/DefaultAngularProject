@@ -1,14 +1,10 @@
-.screen {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(0deg, rgba(2, 121, 152, 0.6), rgba(2, 121, 152, 0.6)), url('../../../Assignment Assets/Images/Classroom+Window.png');
-    overflow: hidden;
-}
 
 table {
     background-color: rgb(255, 255, 255);
     border: 2.5px solid #495058;
     border-collapse: collapse;
+    margin: auto;
+    vertical-align: middle;
 }
 
 td {
@@ -21,17 +17,17 @@ td {
 }
 
 .maze-square-top {
-    border-top-width: 2.5px;
+    border-top-width: 5px;
 }
 
 .maze-square-right {
-    border-right-width: 2.5px;
+    border-right-width: 5px;
 }
 
 .maze-square-bottom {
-    border-bottom-width: 2.5px;
+    border-bottom-width: 5px;
 }
 
 .maze-square-left {
-    border-left-width: 2.5px;
+    border-left-width: 5px;
 }

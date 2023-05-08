@@ -12,18 +12,32 @@ function parseMaze(mazeCollision: number[][]) {
     [2, "maze-square-right"],
     [1, "maze-square-top"]
   ];
+  function complainAboutSquare(r: Number, c: Number, s: string) {
+    // Helper function to report errors with maze encoding
+    console.error("Maze square (%d, %d) %s", r, c, s);
+  }
   for (const [r, row] of mazeCollision.entries()) {
     for (const [c, squareValue] of row.entries()) {
       let remainder = squareValue;
+      if (squareValue < 0 || squareValue > 15) {
+        complainAboutSquare(r, c, "has an invalid collision value");
+      }
+      if (r == 0 && !(squareValue & 1)) {
+        complainAboutSquare(r, c, "does not have collision on its top");
+      } else if (r == mazeCollision.length - 1 && !(squareValue & 4)) {
+        complainAboutSquare(r, c, "does not have collision on its bottom");
+      }
+      if (c == 0 && !(squareValue & 8)) {
+        complainAboutSquare(r, c, "does not have collision on its left");
+      } else if (c == row.length - 1 && !(squareValue & 2)) {
+        complainAboutSquare(r, c, "does not have collision on its right");
+      }
       for (const [value, className] of classValues) {
-        if (remainder >= Number(value)) {
-          remainder -= Number(value); 
+        if (remainder & Number(value)) {
           mazeSquares[r][c] += " " + String(className);
         }
       }
-      if (remainder != 0) {
-        console.error("Maze square (%d, %d) has an invalid collision value", r, c);
-      }
+
     }
   }
   return mazeSquares;

@@ -1,0 +1,13 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+div {
+    background: linear-gradient(0deg, rgba(2, 121, 152, 0.6), rgba(2, 121, 152, 0.6)), url('../../Assignment Assets/Images/Classroom+Window.png');
+}
