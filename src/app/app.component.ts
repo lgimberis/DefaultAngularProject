@@ -9,9 +9,15 @@ import { MazeComponent } from './maze/maze.component';
 export class AppComponent {
   title = 'DefaultAngularProject';
   @ViewChild(MazeComponent) child:MazeComponent | null = null;
+  showModal: boolean = false;
+  modalType: string = '';
   receiveMoveEvent($event: number) {
     if (this.child) {
       this.child.movePlayer($event);
     }
+  }
+  receiveModalEvent($event: string) {
+    this.showModal = true;
+    this.modalType = $event;
   }
 }

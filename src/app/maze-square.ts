@@ -4,4 +4,5 @@ export interface MazeSquare {
     column: number;
     hasObject: boolean;
     objectImgURL: string;
+    objectName: string;
 }

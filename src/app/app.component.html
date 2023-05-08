@@ -232,7 +232,7 @@
 </style>
 
 <div class="content">
-  <app-maze></app-maze>
+  <app-maze (modalSpawningEvent)="receiveModalEvent($event)"></app-maze>
   <app-controls (moveEvent)="receiveMoveEvent($event)"></app-controls>
 </div>
-<!--<app-modal></app-modal>-->
+<app-modal *ngIf="showModal"></app-modal>

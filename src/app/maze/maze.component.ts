@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MazeSquare } from '../maze-square';
 import Mazes from '../../assets/Mazes.json';
 
@@ -15,7 +15,7 @@ function parseMaze(mazeCollision: number[][]) {
   for (let r = 0; r < mazeSquares.length; r++) {
     mazeSquares[r] = Array(mazeCollision[r].length);
     for (let c = 0; c < mazeSquares[r].length; c++) {
-      mazeSquares[r][c] = {classNames: '', row: r, column: c, hasObject: false, objectImgURL: ''};
+      mazeSquares[r][c] = {classNames: '', row: r, column: c, hasObject: false, objectImgURL: '', objectName: ''};
     }
   }
   const LEFT_VALUE = 8;
@@ -94,6 +94,7 @@ function parseMaze(mazeCollision: number[][]) {
       if (index == flagLocation) {
         mazeSquares[r][c].hasObject = true;
         mazeSquares[r][c].objectImgURL = IMG_URL_FLAG;
+        mazeSquares[r][c].objectName = "Flag";
         break;
       }
       index++;
@@ -144,6 +145,12 @@ export class MazeComponent {
     }
     this.playerLeft = this.playerColumn * SQUARE_WIDTH_PIXELS;
     this.playerTop = (this.playerRow + 1) * SQUARE_HEIGHT_PIXELS;
-  }
 
+    // Check the square we've landed on for a question / flag
+    let currentSquare = this.maze[this.playerRow][this.playerColumn];
+    if (currentSquare.hasObject) {
+      this.modalSpawningEvent.emit(currentSquare.objectName);
+    }
+  }
+  @Output() modalSpawningEvent = new EventEmitter<string>();
 }
