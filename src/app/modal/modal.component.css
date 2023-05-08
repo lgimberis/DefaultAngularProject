@@ -9,14 +9,67 @@
 }
 
 .modal-content {
-    width: 1332px;
-    height: 825px;
     margin: auto;
-    
-
     border-radius: 5px;
 }
 
 .victory-modal {
     background: url('../../assets/Assignment Assets/Images/Cloud+Background.png');
+    background-size:cover;
+    background-position:center;
+}
+
+.victory-modal-suboverlay {
+    background: rgba(255, 255, 255, 0.75);
+    padding: 65px 195px 65px 195px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.victory-modal-suboverlay * {
+    margin: 0 auto 0 auto;
+    width: fit-content;
+}
+
+.victory-image-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.victory-image-wrapper img {
+    margin: auto 0 auto 0;
+    object-fit: contain;
+}
+
+.modal-button {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 112px;
+    height: 89px;
+    background: #00B976;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+
+p, h1, modal-button {
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    color: #495058;
+}
+
+p {
+    padding: 25px 0 25px 0;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 38px;
+    vertical-align: middle;
+}
+
+h1, .modal-button {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
 }
