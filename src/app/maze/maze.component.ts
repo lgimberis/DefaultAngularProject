@@ -89,13 +89,14 @@ function parseMaze(mazeCollision: number[][]) {
   // Place flag
   const flagLocation = Mazes["maze-1"]["flagLocation"];
   let index = 0;
+  loop1:
   for (let [r, row] of mazeSquares.entries()) {
     for (let [c, square] of row.entries()) {
       if (index == flagLocation) {
         mazeSquares[r][c].hasObject = true;
         mazeSquares[r][c].objectImgURL = IMG_URL_FLAG;
         mazeSquares[r][c].objectName = "Flag";
-        break;
+        break loop1;
       }
       index++;
     }
