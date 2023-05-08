@@ -4,6 +4,7 @@ import Mazes from '../../assets/Mazes.json';
 
 const SQUARE_WIDTH_PIXELS = 118;
 const SQUARE_HEIGHT_PIXELS = 75;
+const IMG_URL_FLAG = '../../assets/Assignment Assets/Icons/flag-checkered.svg';
 
 function parseMaze(mazeCollision: number[][]) {
   // Processes the given collision matrix as read directly from a JSON file
@@ -14,7 +15,7 @@ function parseMaze(mazeCollision: number[][]) {
   for (let r = 0; r < mazeSquares.length; r++) {
     mazeSquares[r] = Array(mazeCollision[r].length);
     for (let c = 0; c < mazeSquares[r].length; c++) {
-      mazeSquares[r][c] = {classNames: '', row: r, column: c};
+      mazeSquares[r][c] = {classNames: '', row: r, column: c, hasObject: false, objectImgURL: ''};
     }
   }
   const LEFT_VALUE = 8;
@@ -83,6 +84,19 @@ function parseMaze(mazeCollision: number[][]) {
         }
       }
 
+    }
+  }
+  // Place flag
+  const flagLocation = Mazes["maze-1"]["flagLocation"];
+  let index = 0;
+  for (let [r, row] of mazeSquares.entries()) {
+    for (let [c, square] of row.entries()) {
+      if (index == flagLocation) {
+        mazeSquares[r][c].hasObject = true;
+        mazeSquares[r][c].objectImgURL = IMG_URL_FLAG;
+        break;
+      }
+      index++;
     }
   }
   return mazeSquares;

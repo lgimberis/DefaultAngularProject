@@ -46,3 +46,13 @@
 .maze-square-left {
     border-left-width: 5px;
 }
+
+.square-content {
+    display: flex;
+}
+
+.square-content img {
+    object-fit:contain;
+    margin: auto;
+    height: 100%;
+}

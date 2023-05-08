@@ -2,6 +2,9 @@
     <img class="player" style="top: {{playerTop}}px; left: {{playerLeft}}px" src="../../assets/Assignment Assets/Icons/person-running-duotone.svg">
     <div *ngFor="let row of maze;" class="maze-row">
         <div *ngFor="let square of row;" class="maze-square {{square.classNames}}">
+            <div class="square-content" *ngIf="square.hasObject">
+                <img src="{{square.objectImgURL}}">
+            </div>
         </div>
     </div>
 </div>
