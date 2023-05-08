@@ -1,13 +1,19 @@
 
-table {
-    background-color: rgb(255, 255, 255);
-    border: 2.5px solid #495058;
-    border-collapse: collapse;
+.maze {
+    display: flex;
+    flex-direction: column;
     margin: auto;
     vertical-align: middle;
 }
 
-td {
+.maze-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.maze-square {
+    box-sizing:border-box;
+    background-color: rgb(255, 255, 255);
     padding: 0px;
     width: 118px;
     height: 75px;
