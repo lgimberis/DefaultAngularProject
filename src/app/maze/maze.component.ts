@@ -100,8 +100,6 @@ function parseMaze(mazeCollision: number[][]) {
   for (let q = 0; q < toRemove; q++) {
     questionLocations.splice(Math.floor(Math.random() * questionLocations.length), 1);
   }
-
-  questionLocations.sort((a:number, b:number) => a-b);
   // Place flag
   const flagLocation = Mazes["maze-1"]["flagLocation"];
   let index = 0;

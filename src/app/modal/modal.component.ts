@@ -23,7 +23,6 @@ export class ModalComponent {
   question: Question = {id: '-1', text: '', audio: '', competency: '', options: []};
   answers: Answer[] = [];
   answerClasses: string[] = [];
-  buttonClass: string = '';
   validIDs: number[] = Array(Questions.length).fill(0).map((x, i) => i);
   modalButtonText: string = 'Exit';
   modalButtonDisabled: string = 'disabled'
