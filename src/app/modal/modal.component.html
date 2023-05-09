@@ -20,11 +20,11 @@
                         <button class="question-modal-repeat-button">Listen again</button>
                     </div>
                 </div>
-                <button class="question-modal-answer" *ngFor="let answer of answers; index as i">
+                <button class="question-modal-answer" [ngClass]="answerClasses[i]" *ngFor="let answer of answers; index as i" (click)="selectAnswer(i)" >
                     Option {{i+1}}: {{answer.text}}
                 </button>
             </div>
         </div>
     </div>
-    <button class="modal-button">{{modalButtonText}}</button>
+    <button [disabled]="modalButtonDisabled" class="modal-button">{{modalButtonText}}</button>
 </div>

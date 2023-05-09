@@ -92,6 +92,11 @@
 	outline: inherit;
 }
 
+.question-answer-selected {
+    background: #027998;
+    color: #ffffff;
+}
+
 .victory-modal-suboverlay {
     background: rgba(255, 255, 255, 0.75);
     padding: 65px 195px 65px 195px;
@@ -130,6 +135,10 @@
     padding: 20px;
     outline: inherit;
     border: none;
+}
+
+.modal-button:disabled {
+    opacity: 0.5;
 }
 
 p, button, h1, .modal-text {
