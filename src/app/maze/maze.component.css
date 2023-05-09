@@ -57,6 +57,10 @@
     height: 70px;
 }
 
-.square-image-active {
+.square-image {
     filter: invert(25%) sepia(61%) saturate(3117%) hue-rotate(173deg) brightness(93%) contrast(98%);
+}
+
+.square-image-inactive {
+    opacity: 0.4;
 }

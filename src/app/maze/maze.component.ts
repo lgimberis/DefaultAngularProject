@@ -118,7 +118,7 @@ function parseMaze(mazeCollision: number[][]) {
         mazeSquares[r][c].hasObject = true;
         mazeSquares[r][c].objectImgURL = IMG_URL_QUESTION;
         mazeSquares[r][c].objectName = 'Question';
-        mazeSquares[r][c].objectClass = 'square-image-active';
+        mazeSquares[r][c].objectClass = 'square-image';
         mazeSquares[r][c].objectActive = true;
       }
       index++;
@@ -175,7 +175,7 @@ export class MazeComponent {
     if (currentSquare.hasObject && currentSquare.objectActive) {
       this.modalSpawningEvent.emit(currentSquare.objectName);
       this.maze[this.playerRow][this.playerColumn].objectActive = false;
-      this.maze[this.playerRow][this.playerColumn].objectClass = '';
+      this.maze[this.playerRow][this.playerColumn].objectClass = 'square-image square-image-inactive';
     }
   }
 
