@@ -58,10 +58,6 @@
     margin: 0 auto 0 auto;
 }
 
-.square-image {
-    filter: brightness(0) saturate(100%) invert(24%) sepia(68%) saturate(2649%) hue-rotate(172deg) brightness(97%) contrast(98%);
-}
-
 .square-image-inactive {
     opacity: 0.4;
 }

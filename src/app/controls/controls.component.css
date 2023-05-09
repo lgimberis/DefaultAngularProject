@@ -37,6 +37,14 @@
     
 }
 
+.control-box:hover {
+    filter: brightness(120%);
+}
+
+.control-arrow {
+    filter: invert(100%);
+}
+
 .control-column {
     grid-column: span 1;
 }

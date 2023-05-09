@@ -99,7 +99,6 @@ function parseMaze(mazeCollision: number[][]) {
   let toRemove = questionLocations.length - numQuestions
   for (let q = 0; q < toRemove; q++) {
     questionLocations.splice(Math.floor(Math.random() * questionLocations.length), 1);
-    console.log(questionLocations);
   }
 
   questionLocations.sort((a:number, b:number) => a-b);
@@ -150,8 +149,6 @@ export class MazeComponent {
   playerLeft: number = 0;
   movePlayer = (direction: number) => {
     if (direction & this.mazeCollision[this.playerRow][this.playerColumn]) {
-      console.error("Invalid move direction given: %d at tile (%d, %d) with flag %d", 
-        direction, this.playerRow, this.playerColumn, this.mazeCollision[this.playerRow][this.playerColumn]);
       return;
     }
 
