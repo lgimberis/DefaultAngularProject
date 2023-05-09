@@ -5,6 +5,7 @@ import Mazes from '../../assets/Mazes.json';
 const SQUARE_WIDTH_PIXELS = 118;
 const SQUARE_HEIGHT_PIXELS = 75;
 const IMG_URL_FLAG = '../../assets/Assignment Assets/Icons/flag-checkered.svg';
+const IMG_URL_QUESTION = '../../assets/Assignment Assets/Icons/block-question-duotone.svg';
 
 function parseMaze(mazeCollision: number[][]) {
   // Processes the given collision matrix as read directly from a JSON file
@@ -15,7 +16,7 @@ function parseMaze(mazeCollision: number[][]) {
   for (let r = 0; r < mazeSquares.length; r++) {
     mazeSquares[r] = Array(mazeCollision[r].length);
     for (let c = 0; c < mazeSquares[r].length; c++) {
-      mazeSquares[r][c] = {classNames: '', row: r, column: c, hasObject: false, objectImgURL: '', objectName: ''};
+      mazeSquares[r][c] = {classNames: '', row: r, column: c, hasObject: false, objectImgURL: '', objectName: '', objectClass: ''};
     }
   }
   const LEFT_VALUE = 8;
@@ -86,17 +87,24 @@ function parseMaze(mazeCollision: number[][]) {
 
     }
   }
+  // Place question boxes
+  const questionLocations: number[] = Mazes["maze-1"]["questionLocations"];
+  questionLocations.sort((a:number, b:number) => a-b);
   // Place flag
   const flagLocation = Mazes["maze-1"]["flagLocation"];
   let index = 0;
-  loop1:
   for (let [r, row] of mazeSquares.entries()) {
     for (let [c, square] of row.entries()) {
       if (index == flagLocation) {
         mazeSquares[r][c].hasObject = true;
         mazeSquares[r][c].objectImgURL = IMG_URL_FLAG;
-        mazeSquares[r][c].objectName = "Flag";
-        break loop1;
+        mazeSquares[r][c].objectName = 'Flag';
+        mazeSquares[r][c].objectClass = '';
+      } else if (questionLocations.includes(index)) {
+        mazeSquares[r][c].hasObject = true;
+        mazeSquares[r][c].objectImgURL = IMG_URL_QUESTION;
+        mazeSquares[r][c].objectName = 'Question';
+        mazeSquares[r][c].objectClass = 'square-image-active';
       }
       index++;
     }

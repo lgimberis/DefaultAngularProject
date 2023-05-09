@@ -3,7 +3,7 @@
     <div *ngFor="let row of maze;" class="maze-row">
         <div *ngFor="let square of row;" class="maze-square {{square.classNames}}">
             <div class="square-content" *ngIf="square.hasObject">
-                <img src="{{square.objectImgURL}}">
+                <img class="{{square.objectClass}}" src="{{square.objectImgURL}}">
             </div>
         </div>
     </div>

@@ -5,4 +5,5 @@ export interface MazeSquare {
     hasObject: boolean;
     objectImgURL: string;
     objectName: string;
+    objectClass: string;
 }
