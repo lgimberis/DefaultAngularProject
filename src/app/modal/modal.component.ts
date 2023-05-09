@@ -30,5 +30,9 @@ export class ModalComponent {
       .map(v => ({v, 'sort': Math.random()}))
       .sort((a, b) => (a.sort - b.sort))
       .map(({v}) => v);
+    let audio = new Audio();
+    audio.src = "../../assets/Assignment Assets/Audios/" + this.question.audio.toLowerCase() + ".mp3";
+    audio.load();
+    audio.play();
   }
 }
