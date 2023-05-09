@@ -148,7 +148,9 @@ export class MazeComponent {
   playerTop: number = SQUARE_HEIGHT_PIXELS;
   playerLeft: number = 0;
   movePlayer = (direction: number) => {
+    // Moves the player character in the required direction
     if (direction & this.mazeCollision[this.playerRow][this.playerColumn]) {
+      // Invalid direction; blocked by a wall
       return;
     }
 
@@ -164,10 +166,11 @@ export class MazeComponent {
       console.error("Nonsensical move direction given: %d", direction)
       return;
     }
+    // Adjust the actual image according to the player's new position within the grid
     this.playerLeft = this.playerColumn * SQUARE_WIDTH_PIXELS;
     this.playerTop = (this.playerRow + 1) * SQUARE_HEIGHT_PIXELS;
 
-    // Check the square we've landed on for a question / flag
+    // Check the square we've landed on for a question / flag and launch modals if required
     let currentSquare = this.maze[this.playerRow][this.playerColumn];
     if (currentSquare.hasObject && currentSquare.objectActive) {
       this.modalSpawningEvent.emit(currentSquare.objectName);
