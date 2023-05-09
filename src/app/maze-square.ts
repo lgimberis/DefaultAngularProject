@@ -6,4 +6,5 @@ export interface MazeSquare {
     objectImgURL: string;
     objectName: string;
     objectClass: string;
+    objectActive: boolean;
 }

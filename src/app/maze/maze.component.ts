@@ -16,7 +16,7 @@ function parseMaze(mazeCollision: number[][]) {
   for (let r = 0; r < mazeSquares.length; r++) {
     mazeSquares[r] = Array(mazeCollision[r].length);
     for (let c = 0; c < mazeSquares[r].length; c++) {
-      mazeSquares[r][c] = {classNames: '', row: r, column: c, hasObject: false, objectImgURL: '', objectName: '', objectClass: ''};
+      mazeSquares[r][c] = {classNames: '', row: r, column: c, hasObject: false, objectImgURL: '', objectName: '', objectClass: '', objectActive: true};
     }
   }
   const LEFT_VALUE = 8;
@@ -113,11 +113,13 @@ function parseMaze(mazeCollision: number[][]) {
         mazeSquares[r][c].objectImgURL = IMG_URL_FLAG;
         mazeSquares[r][c].objectName = 'Flag';
         mazeSquares[r][c].objectClass = '';
+        mazeSquares[r][c].objectActive = true;
       } else if (questionLocations.includes(index)) {
         mazeSquares[r][c].hasObject = true;
         mazeSquares[r][c].objectImgURL = IMG_URL_QUESTION;
         mazeSquares[r][c].objectName = 'Question';
         mazeSquares[r][c].objectClass = 'square-image-active';
+        mazeSquares[r][c].objectActive = true;
       }
       index++;
     }
@@ -170,9 +172,12 @@ export class MazeComponent {
 
     // Check the square we've landed on for a question / flag
     let currentSquare = this.maze[this.playerRow][this.playerColumn];
-    if (currentSquare.hasObject) {
+    if (currentSquare.hasObject && currentSquare.objectActive) {
       this.modalSpawningEvent.emit(currentSquare.objectName);
+      this.maze[this.playerRow][this.playerColumn].objectActive = false;
+      this.maze[this.playerRow][this.playerColumn].objectClass = '';
     }
   }
+
   @Output() modalSpawningEvent = new EventEmitter<string>();
 }
