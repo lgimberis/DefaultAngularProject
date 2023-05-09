@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'DefaultAngularProject';
   @ViewChild(MazeComponent) child:MazeComponent | null = null;
   showModal: boolean = false;
-  modalType: string = '';
+  isVictoryModal: boolean = false;
   receiveMoveEvent($event: number) {
     if (this.child) {
       this.child.movePlayer($event);
@@ -18,6 +18,6 @@ export class AppComponent {
   }
   receiveModalEvent($event: string) {
     this.showModal = true;
-    this.modalType = $event;
+    this.isVictoryModal = Boolean($event == 'Flag');
   }
 }

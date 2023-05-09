@@ -10,5 +10,16 @@
             <p>You did a great job! Press the exit button to leave.</p>
         </div>
     </div>
+    <div *ngIf="!isVictoryModal" class="modal-content question-modal">
+        <img src="../../assets/Assignment Assets/Images/Active.png">
+        <div class="question-modal-question-wrapper">
+            <div class="question-modal-question">
+                {{question.text}}
+            </div>
+            <div *ngFor="let answer of question.options">
+                {{answer.text}}
+            </div>
+        </div>
+    </div>
     <button *ngIf="isVictoryModal" class="modal-button">Exit</button>
 </div>

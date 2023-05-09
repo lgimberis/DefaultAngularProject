@@ -19,6 +19,21 @@
     background-position:center;
 }
 
+.question-modal {
+    background: url('../../assets/Assignment Assets/Images/Sport+Field+Background.png');
+    background-size:contain;
+    background-position:center;
+}
+
+.question-modal-question-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.question-modal-question {
+    
+}
+
 .victory-modal-suboverlay {
     background: rgba(255, 255, 255, 0.75);
     padding: 65px 195px 65px 195px;
