@@ -121,11 +121,15 @@
     position: absolute;
     right: 20px;
     bottom: 20px;
-    width: 112px;
-    height: 89px;
     background: #00B976;
     border-radius: 5px;
     color: #FFFFFF;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
+    padding: 20px;
+    outline: inherit;
+    border: none;
 }
 
 p, button, h1, .modal-text {
@@ -145,7 +149,7 @@ p, button, h1, .modal-text {
     vertical-align: middle;
 }
 
-h1, .modal-button {
+h1 {
     font-weight: bold;
     font-size: 40px;
     line-height: 49px;

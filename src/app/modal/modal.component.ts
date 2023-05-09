@@ -12,11 +12,17 @@ export class ModalComponent {
   isVictoryModal: boolean = true;
   @Input() set updateModal(v: boolean) {
     this.isVictoryModal = v;
-    this.chooseRandomQuestion();
+    if(this.isVictoryModal) {
+      this.modalButtonText = 'Exit';
+    } else {
+      this.modalButtonText = 'Confirm';
+      this.chooseRandomQuestion();
+    }
   } 
   question: Question = {id: '-1', text: '', audio: '', competency: '', options: []};
   answers: Answer[] = [];
   validIDs: number[] = Array(Questions.length).fill(0).map((x, i) => i);
+  modalButtonText: string = 'Exit';
   chooseRandomQuestion = () => {
     if (this.validIDs.length == 0) {
       console.error("Too many question boxes placed - out of questions!")
