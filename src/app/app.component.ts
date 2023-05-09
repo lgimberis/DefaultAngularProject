@@ -20,4 +20,7 @@ export class AppComponent {
     this.showModal = true;
     this.isVictoryModal = Boolean($event == 'Flag');
   }
+  closeModal() {
+    this.showModal = false;
+  }
 }

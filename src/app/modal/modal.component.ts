@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import Questions from '../../assets/Assignment Assets/Questions.json';
 import { Question } from '../question';
 import { Answer } from '../answer';
@@ -18,7 +18,8 @@ export class ModalComponent {
       this.modalButtonText = 'Confirm';
       this.chooseRandomQuestion();
     }
-  } 
+  }
+  @Output() closeModal: EventEmitter<boolean> = new EventEmitter();
   question: Question = {id: '-1', text: '', audio: '', competency: '', options: []};
   answers: Answer[] = [];
   answerClasses: string[] = [];
@@ -26,6 +27,7 @@ export class ModalComponent {
   validIDs: number[] = Array(Questions.length).fill(0).map((x, i) => i);
   modalButtonText: string = 'Exit';
   modalButtonDisabled: string = 'disabled'
+  chosenAnswerID: number = -1;
   audio: HTMLAudioElement = new Audio();
   playAudio = (filename: string) => {
     if (this.audio) {
@@ -57,20 +59,44 @@ export class ModalComponent {
     this.playAudio(this.question.audio.toLowerCase());
   }
   selectAnswer = (index: number) => {
-    // Apply 'selected' CSS to chosen answer
-    for(let i = 0; i < this.answerClasses.length; i++) {
-      if (i == index) {
-        this.answerClasses[i] = 'question-answer-selected';
-      } else {
-        this.answerClasses[i] = '';
-      }
+    // Reset CSS on previously selected answer
+    if (this.chosenAnswerID != -1) {
+      this.answerClasses[this.chosenAnswerID] = '';
     }
+    // Apply 'selected' CSS to chosen answer
+    this.chosenAnswerID = index;
+    this.answerClasses[index] = 'question-answer-selected';
     // Play the selection audio of chosen answer
     this.playAudio(this.answers[index].audio.toLowerCase());
     // Enable the 'Confirm' button
     this.modalButtonDisabled = '';
   }
   confirmAnswer = () => {
+    let answerQuality = this.answers[this.chosenAnswerID].answer;
+    if (answerQuality == 'BEST' || answerQuality == 'NEXTBEST') {
+      if (answerQuality == 'BEST') {
+        // Play 'best answer' audio
+        this.playAudio("maze_best_active_m");
+      } else {
+        // Play 'next best answer' audio
+        this.playAudio("maze_next_best_active_m");
+      }
+      // Update answer CSS
+      this.answerClasses[this.chosenAnswerID] = 'question-answer-correct';
+      // Wait a few seconds - audio plays and choice is highlighted green
+      setTimeout(() => {
+        // Close the modal
+        this.closeModal.emit()
+      }, 3000);
 
+    } else if (answerQuality == 'WRONG') {
+      // Play 'wrong answer' audio
+      this.playAudio("maze_wrong_active_m");
+
+      // Update CSS class of 'wrong' answer
+      this.answerClasses[this.chosenAnswerID] = 'question-answer-wrong';
+    } else {
+      console.error('Question id %s has an option with invalid answer %s', this.question.id, answerQuality);
+    }
   }
 }

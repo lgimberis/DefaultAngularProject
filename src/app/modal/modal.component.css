@@ -97,6 +97,16 @@
     color: #ffffff;
 }
 
+.question-answer-wrong {
+    background: #DD403A;
+    color: #ffffff;
+}
+
+.question-answer-correct {
+    background: #00B976;
+    color: #ffffff;
+}
+
 .victory-modal-suboverlay {
     background: rgba(255, 255, 255, 0.75);
     padding: 65px 195px 65px 195px;

@@ -26,5 +26,5 @@
             </div>
         </div>
     </div>
-    <button [disabled]="modalButtonDisabled" class="modal-button">{{modalButtonText}}</button>
+    <button (click)="confirmAnswer()" [disabled]="modalButtonDisabled" class="modal-button">{{modalButtonText}}</button>
 </div>

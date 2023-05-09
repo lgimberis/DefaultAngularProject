@@ -235,4 +235,4 @@
   <app-maze (modalSpawningEvent)="receiveModalEvent($event)"></app-maze>
   <app-controls (moveEvent)="receiveMoveEvent($event)"></app-controls>
 </div>
-<app-modal [updateModal]="isVictoryModal" *ngIf="showModal"></app-modal>
+<app-modal (closeModal)="closeModal()" [updateModal]="isVictoryModal" *ngIf="showModal"></app-modal>
