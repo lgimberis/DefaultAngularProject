@@ -88,7 +88,20 @@ function parseMaze(mazeCollision: number[][]) {
     }
   }
   // Place question boxes
+
+  // Spec: Place between 5-10 questions
+  const MIN_QUESTIONS = 5;
+  const MAX_QUESTIONS = 10;
+  const numQuestions = MIN_QUESTIONS + Math.floor(Math.random() * (1 + MAX_QUESTIONS - MIN_QUESTIONS));
   const questionLocations: number[] = Mazes["maze-1"]["questionLocations"];
+
+  // Remove question boxes at random
+  let toRemove = questionLocations.length - numQuestions
+  for (let q = 0; q < toRemove; q++) {
+    questionLocations.splice(Math.floor(Math.random() * questionLocations.length), 1);
+    console.log(questionLocations);
+  }
+
   questionLocations.sort((a:number, b:number) => a-b);
   // Place flag
   const flagLocation = Mazes["maze-1"]["flagLocation"];
