@@ -49,16 +49,17 @@
 
 .square-content {
     display: flex;
+    height: 100%;
+    width: 100%;
 }
 
 .square-content img {
-    object-fit:contain;
-    margin: auto;
-    height: 70px;
+    object-fit: contain;
+    margin: 0 auto 0 auto;
 }
 
 .square-image {
-    filter: invert(25%) sepia(61%) saturate(3117%) hue-rotate(173deg) brightness(93%) contrast(98%);
+    filter: brightness(0) saturate(100%) invert(24%) sepia(68%) saturate(2649%) hue-rotate(172deg) brightness(97%) contrast(98%);
 }
 
 .square-image-inactive {
