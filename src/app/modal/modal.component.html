@@ -11,14 +11,19 @@
         </div>
     </div>
     <div *ngIf="!isVictoryModal" class="modal-content question-modal">
-        <img src="../../assets/Assignment Assets/Images/Active.png">
-        <div class="question-modal-question-wrapper">
-            <div class="question-modal-question">
-                {{question.text}}
+        <div class="question-modal-suboverlay">
+            <img class="question-modal-image" src="../../assets/Assignment Assets/Images/Active.png">
+            <div class="question-modal-question-wrapper">
+                <div class="question-modal-question">
+                    <div class="modal-text">{{question.text}}</div>
+                    <div class="question-modal-question-button-wrapper">
+                        <button class="question-modal-repeat-button">Listen again</button>
+                    </div>
+                </div>
+                <button class="question-modal-answer" *ngFor="let answer of answers; index as i">
+                    Option {{i+1}}: {{answer.text}}
+                </button>
             </div>
-            <button *ngFor="let answer of answers; index as i">
-                Option {{i+1}}: {{answer.text}}
-            </button>
         </div>
     </div>
     <button *ngIf="isVictoryModal" class="modal-button">Exit</button>

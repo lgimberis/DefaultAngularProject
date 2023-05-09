@@ -21,17 +21,75 @@
 
 .question-modal {
     background: url('../../assets/Assignment Assets/Images/Sport+Field+Background.png');
-    background-size:contain;
+    background-size:cover;
     background-position:center;
+    height: 803px;
+    width: 1332px;
+    box-sizing: border-box;
+}
+
+.question-modal-suboverlay {
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    vertical-align: middle;
+    padding: 20px 20px 20px 60px;
+    box-sizing: border-box;
+    gap: 80px;
+    width: 100%;
+    height: 100%;
 }
 
 .question-modal-question-wrapper {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.question-modal-image {
+    object-fit: contain;
+}
+
+.question-modal-question-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.question-modal-repeat-button {
+    border: 2px solid #8FECCA;
+    border-radius: 5px;
+    background: none;
+    width: fit-content;
+    padding: 15px;
 }
 
 .question-modal-question {
+    width: 100%;
+    background: #00B976;
+    border: 2px solid #FFFFFF;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 30px;
+    filter: drop-shadow(0px 6px 10px rgba(0, 118, 75, 0.3));
+    color: #FFFFFF;
+}
+
+.question-modal-answer {
+    width: 100%;
+    display: flex;
+    align-items:start;
+    text-align:start;
+    color: #495058;
+    padding: 20px;
     
+    background: #FFFFFF;
+    border-radius: 5px;
+
+	border: none;
+	outline: inherit;
 }
 
 .victory-modal-suboverlay {
@@ -40,6 +98,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    color: #495058;
 }
 
 .victory-modal-suboverlay * {
@@ -69,13 +128,16 @@
     color: #FFFFFF;
 }
 
-p, h1, modal-button {
+p, button, h1, .modal-text {
+    color:inherit;
     font-family: 'Helvetica Neue';
     font-style: normal;
-    color: #495058;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 34px;
 }
 
-p {
+.victory-modal-suboverlay p {
     padding: 25px 0 25px 0;
     font-weight: normal;
     font-size: 32px;
