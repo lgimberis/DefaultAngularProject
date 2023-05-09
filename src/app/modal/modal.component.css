@@ -92,6 +92,10 @@
 	outline: inherit;
 }
 
+.question-modal-answer:hover:not(:disabled, .question-answer-selected, .question-answer-wrong, .question-answer-correct) {
+    filter: brightness(80%);
+}
+
 .question-answer-selected {
     background: #027998;
     color: #ffffff;
@@ -147,7 +151,12 @@
     border: none;
 }
 
-.modal-button:disabled {
+button:hover:not(:disabled) {
+    filter:brightness(120%);
+}
+
+
+button:disabled {
     opacity: 0.5;
 }
 
