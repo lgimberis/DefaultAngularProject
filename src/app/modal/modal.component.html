@@ -17,7 +17,7 @@
                 <div class="question-modal-question">
                     <div class="modal-text">{{question.text}}</div>
                     <div class="question-modal-question-button-wrapper">
-                        <button class="question-modal-repeat-button">Listen again</button>
+                        <button (click)="playQuestionAudio()" class="question-modal-repeat-button">Listen again</button>
                     </div>
                 </div>
                 <button class="question-modal-answer" [ngClass]="answerClasses[i]" *ngFor="let answer of answers; index as i" (click)="selectAnswer(i)" >

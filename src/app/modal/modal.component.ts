@@ -27,6 +27,14 @@ export class ModalComponent {
   modalButtonText: string = 'Exit';
   modalButtonDisabled: string = 'disabled'
   audio: HTMLAudioElement = new Audio();
+  playAudio = (filename: string) => {
+    if (this.audio) {
+      this.audio.pause();
+    }
+    this.audio = new Audio("../../assets/Assignment Assets/Audios/" + filename + ".mp3");
+    this.audio.load();
+    this.audio.play();
+  }
   chooseRandomQuestion = () => {
     if (this.validIDs.length == 0) {
       console.error("Too many question boxes placed - out of questions!")
@@ -43,13 +51,10 @@ export class ModalComponent {
 
     this.answerClasses = Array(this.answers.length).fill('');
     // Play the question audio
-    if (this.audio) {
-      this.audio.pause();
-    }
-    this.audio = new Audio("../../assets/Assignment Assets/Audios/" + this.question.audio.toLowerCase() + ".mp3");
-    this.audio.load();
-    this.audio.play();
-    
+    this.playQuestionAudio();
+  }
+  playQuestionAudio = () => {
+    this.playAudio(this.question.audio.toLowerCase());
   }
   selectAnswer = (index: number) => {
     // Apply 'selected' CSS to chosen answer
@@ -61,12 +66,7 @@ export class ModalComponent {
       }
     }
     // Play the selection audio of chosen answer
-    if (this.audio) {
-      this.audio.pause();
-    }
-    this.audio = new Audio("../../assets/Assignment Assets/Audios/" + this.answers[index].audio.toLowerCase() + ".mp3");
-    this.audio.load();
-    this.audio.play();
+    this.playAudio(this.answers[index].audio.toLowerCase());
     // Enable the 'Confirm' button
     this.modalButtonDisabled = '';
   }
